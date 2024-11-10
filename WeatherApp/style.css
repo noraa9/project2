@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Nova+Square&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    outline: none;
+    font-weight: 600;
+}
+
+body {
+    background: url('assets/weather/maxresdefault.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Измените с height: 100dvh на min-height */
+    overflow-x: hidden; /* Убирает горизонтальную прокрутку */
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100vh; /* Измените с 100dvh на 100vh */
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(15px);
+}
+
+/* UTILITIES */
+.regular-text {
+    font-weight: 400;
+}
+/* UTILITIES СОҢЫ */
+
+.main-container { 
+    width: 90%; /* Измените ширину контейнера для адаптивности */
+    max-width: 25rem; /* Ограничьте максимальную ширину */
+    height: 31rem;
+    z-index: 1;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.15));
+    border-radius: 12px;
+    backdrop-filter: blur(100px);
+    padding: 20px;
+}
+
+/* INPUR CONTAINER */
+.input-container {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.city-input {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 100px;
+    border: 3px solid transparent;
+    background: rgba(0, 0, 0, 0.15);
+    font-weight: 500;
+    transition: 0.25s border;
+    padding-right: 140px;
+}
+
+.city-input:focus {
+    border: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.city-input::placeholder {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.search-button {
+    position: absolute;
+    right: 90px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    display: flex;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.weather-units {
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    gap: 10px;
+    font-size: 1.3rem;
+}
+
+.selected-unit {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* ИНПУТ КОНТЕЙНЕР СОҢЫ */
+
+/* SECTION__WEATHER-INFO */
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.location-date-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.weather-summary-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather-summary-img {
+    width: 120px;
+    height: 120px;
+}
+
+.weather-summary-info {
+    text-align: end;
+}
+
+.weather-conditions-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.condition-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.condition-item span {
+    font-size: 2.075rem;
+}
+
+.forecast-items-container {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; /* Измените на auto для адаптивного скроллинга */
+    padding-bottom: 12px;
+}
+
+.forecast-items-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.forecast-items-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 100px;
+}
+
+.forecast-items-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 100px;
+}
+
+.forecast-item {
+    min-width: 70px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    align-items: center;
+    border-radius: 12px;
+    transition: 0.3s background;
+}
+
+.forecast-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.forecast-item-img {
+    width: 35px;
+    height: 35px;
+}
+/* СЭКШОН ПОГОДА ИНФО СОҢЫ */
+
+/* SECTION MESSAGE */
+.section-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    margin-top: 25%;
+}
+
+.section-message img {
+    height: 180px;
+    width: fit-content;
+}
+/* SECTION MESSAGE СОҢЫ */
+
+/* MEDIA QUERIES */
+@media (max-width: 600px) {
+    .main-container {
+        height: auto; /* Позволяет контейнеру адаптироваться к содержимому */
+        padding: 15px; /* Уменьшите отступы для мобильных устройств */
+    }
+
+    .city-input {
+        padding-right: 120px; /* Уменьшите правый отступ */
+    }
+
+  
+
+    .weather-units {
+        right: 10px; /* Уменьшите положение единиц измерения */
+    }
+
+    .weather-summary-img {
+        width: 100px; /* Уменьшите размеры изображения на мобильных */
+        height: 100px;
+    }
+
+    .forecast-item {
+        min-width: 60px; /* Уменьшите минимальную ширину элемента прогноза */
+    }
+}
+
+@media (max-width: 400px) {
+    .main-container {
+        width: 100%; /* Установите ширину контейнера на 100% для маленьких экранов */
+        padding: 10px; /* Уменьшите отступы еще больше */
+    }
+
+    .search-button {
+        right: 75px;
+    }
+
+    .city-input {
+        padding-right: 110px; /* Уменьшите правый отступ */
+    }
+
+    .forecast-item {
+        min-width: 50px; /* Уменьшите минимальную ширину элемента прогноза */
+    }
+
+    .forecast-items-container {
+        padding-bottom: 5px; /* Уменьшите отступ снизу */
+    }
+}

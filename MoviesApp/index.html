@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Movie App</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="top">
+                 <span class="light-dark-mode">
+                    <i class="fa-solid fa-moon"></i>
+                 </span>
+                 <span class="search-container">
+                    <input class="search-input" type="text" placeholder="Search Movie...">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                 </span>
+            </div>
+            <div class="fav-movies-container">
+                <h2>Watch Later</h2>
+                <div class="fav-movies">
+                    <div class="single">
+                        <div class="top">
+                            <div class="img-container">
+                                <img src="https://unsplash.it/100/100" alt="suret">
+                            </div>
+                            <div class="text">
+                                <p>Movie Name</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-x"></i>
+                    </div>
+                    <div class="single">
+                        <div class="top">
+                            <div class="img-container">
+                                <img src="https://unsplash.it/100/99" alt="suret">
+                            </div>
+                            <div class="text">
+                                <p>Movie Name</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-x"></i>
+                    </div>
+                    <div class="single">
+                        <div class="top">
+                            <div class="img-container">
+                                <img src="https://unsplash.it/99/100" alt="suret">
+                            </div>
+                            <div class="text">
+                                <p>Movie Name</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-x"></i>
+                    </div>
+                    <div class="single">
+                        <div class="top">
+                            <div class="img-container">
+                                <img src="https://unsplash.it/98/99" alt="suret">
+                            </div>
+                            <div class="text">
+                                <p>Movie Name</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-x"></i>
+                    </div>
+                    <div class="single">
+                        <div class="top">
+                            <div class="img-container">
+                                <img src="https://unsplash.it/99/90" alt="suret">
+                            </div>
+                            <div class="text">
+                                <p>Movie Name</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-x"></i>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="movies-container">
+            <h2>Popular Movie</h2>
+            <div class="movie">
+                <!-- <div class="movie-card">
+                    <div class="movie-card-img-container">
+                        <img src="https://unsplash.it/400/300" alt="">
+                    </div>
+                    <div class="movie-name">
+                        <p>Тамақ аты</p>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="pop-up-container">
+        <div class="pop-up">
+            <i class="fa-solid fa-x"></i>
+            <div class="pop-up-inner">
+                <div class="left">
+                    <!-- <div class="movie">
+                        <div class="movie-card">
+                            <div class="movie-card-img-container">
+                                <img src="https://unsplash.it/400/300" alt="">
+                            </div>
+                            <div class="movie-name">
+                                <p>Тамақ аты</p>
+                                <i class="fa-regular fa-heart"></i>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="right">
+                    <!-- Movie synopsis -->
+                    <div>
+                        <h2>Synopsis</h2>
+                        <p class="movie-info">
+                            <!-- Movie synopsis will be dynamically inserted here -->
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                
+                    <!-- Movie rating and runtime -->
+                    <div>
+                        <h2>Rating & Runtime</h2>
+                        <p><strong>Rating:</strong> 8.5/10</p> <!-- Rating will be dynamically inserted -->
+                        <p><strong>Runtime:</strong> 2h 30m</p> <!-- Runtime will be dynamically inserted -->
+                    </div>
+                
+                    <!-- Cast and crew information -->
+                    <div>
+                        <h2>Cast & Crew</h2>
+                        <ul>
+                            <li><strong>Director:</strong> John Doe</li> <!-- Director name will be dynamically inserted -->
+                            <li><strong>Cast:</strong> Jane Smith, Robert Brown, etc.</li> <!-- Cast will be dynamically inserted -->
+                            <li><strong>Writer:</strong> Alice Green</li> <!-- Writer name will be dynamically inserted -->
+                        </ul>
+                    </div>
+                
+                    <!-- User reviews (optional) -->
+                    <div>
+                        <h2>User Reviews</h2>
+                        <div class="review">
+                            <p><strong>John Doe:</strong> Amazing movie! A must-watch for everyone.</p>
+                        </div>
+                        <div class="review">
+                            <p><strong>Jane Smith:</strong> Not my type, but the action scenes were great.</p>
+                        </div>
+                        <!-- Additional reviews can be added here -->
+                    </div>
+                
+                    <!-- Movie trailers/clips (optional) -->
+                    <div>
+                        <h2>Trailers & Clips</h2>
+                        <div class="trailer">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/your-video-id" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <!-- Additional trailers can be added here -->
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

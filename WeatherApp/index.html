@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <!-- БҰЛ ИМПОРТ ФОНТ-ОУСОМДАҒЫ ИКОНДАРҒА -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+<body>
+    <main class="main-container">
+        <header class="input-container">
+            <input type="text" class="city-input" placeholder="Search City">
+            <button class="search-button">
+                <!-- БҰЛ ЛУПА -->
+                <i class="fa-solid fa-magnifying-glass-location"></i>
+            </button>
+            <div class="weather-units">
+                <span class="weather-units__celsius selected-unit">&#176C</span>
+                <span class="weather-units__farenheit">&#176F</span>
+            </div>
+        </header>
+        <section class="weather-info" style="display: none;">
+            <div class="location-date-container">
+                <div class="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h4 class="country-text">Kazakhstan</h4>
+                </div>
+                <h5 class="current-date-text regular-text">Wed, 29 Oct</h5>
+            </div>
+            <div class="weather-summary-container">
+                <img src="assets/weather/weather-icons/clouds.svg" alt="Бұлтты ғой кароче" class="weather-summary-img">
+                <div class="weather-summary-info">
+                    <h1 class="temp-text">29 °C</h1>
+                    <h3 class="condition-text regular-text">Clouds</h3>
+                </div>
+            </div>
+            <div class="weather-conditions-container">
+                <div class="condition-item">
+                    <span><i class="fa-solid fa-droplet"></i></span>
+                    <div class="condition-info">
+                        <h5 class="regular-text">Humidity</h5>
+                        <h5 class="humidity-value-text">55%</h5>
+                    </div>
+                </div>
+                <div class="condition-item">
+                    <span><i class="fa-solid fa-wind"></i></span>
+                    <div class="condition-info">
+                        <h5 class="regular-text">Wind Speed</h5>
+                        <h5 class="wind-value-text">1 M/s</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="forecast-items-container">
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-text">27 Oct</h5>
+                    <img src="assets/weather/weather-icons/thunderstorm.svg" alt="молния макуин" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">29 °C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-text">27 Oct</h5>
+                    <img src="assets/weather/weather-icons/thunderstorm.svg" alt="молния макуин" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">29 °C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-text">27 Oct</h5>
+                    <img src="assets/weather/weather-icons/thunderstorm.svg" alt="молния макуин" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">29 °C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-text">27 Oct</h5>
+                    <img src="assets/weather/weather-icons/thunderstorm.svg" alt="молния макуин" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">29 °C</h5>
+                </div>
+            </div>
+        </section>
+        <section class="search-city section-message">
+            <img src="assets/weather/message/search-city.png" alt="Қала іздеу">
+            <div>
+                <h1>Search City</h1>
+                <h4 class="regular-text">Find out the weather conditions of the city</h4>
+            </div>
+        </section>
+        <section class="not-found section-message" style="display: none;">
+            <img src="assets/weather/message/not-found.png" alt="Қала табылмады">
+            <div>
+                <h1>Search City</h1>
+                <h4 class="regular-text">Find out the weather conditions of the city</h4>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
