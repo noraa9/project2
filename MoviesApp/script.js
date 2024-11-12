@@ -43,13 +43,13 @@ async function searchMovies(query) {
     try {
         const response = await fetch(searchURL);
         const data = await response.json();
-        displayMovies(data.results);
+        currentMovies = data.results;  // Сохраняем фильмы в переменной
+        displayMovies(currentMovies);  // Отображаем найденные фильмы
         console.log(data);
     } catch (error) {
         console.error('Error fetching search results:', error);
     }
 }
-
 // Функция для отображения фильмов на странице
 function displayMovies(movies) {
     movieContainer.innerHTML = ''; // очищаем контейнер перед отображением новых фильмов
@@ -59,23 +59,25 @@ function displayMovies(movies) {
     movies.forEach(movie => {
         const movieCard = document.createElement('div');
         movieCard.classList.add('movie-card');
+        movieCard.dataset.releaseDate = movie.release_date; // add release date to the card
+
         movieCard.innerHTML = `
             <div class="movie-card-img-container">
                 <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
             </div>
             <div class="movie-name">
                 <p>${movie.title}</p>
-                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-bookmark"></i>
             </div>
         `;
 
-        const button = movieCard.querySelector('.fa-heart');
+        const button = movieCard.querySelector('.fa-bookmark');
         button.addEventListener('click', () => {
             if (button.classList.contains('fa-regular')) {
-                button.setAttribute('class', 'fa-solid fa-heart');
+                button.setAttribute('class', 'fa-solid fa-bookmark');
                 addMovieLS(movie.id);
             } else {
-                button.setAttribute('class', 'fa-regular fa-heart');
+                button.setAttribute('class', 'fa-regular fa-bookmark');
                 removeMovieLS(movie.id);
             }
             fetchFavMovies();
@@ -94,6 +96,7 @@ function displayMovies(movies) {
         movieContainer.appendChild(movieCard);
     });
 }
+
 
 function addMovieLS(movieID) {
     const movieIds = getMovieLS();
@@ -122,6 +125,67 @@ async function fetchFavMovies() {
     }
 }
 
+// Открытие/закрытие панели сортировки
+document.querySelector('.sort-btn').addEventListener('click', function() {
+    document.querySelector('.sort-container').classList.toggle('open');
+});
+
+
+
+let sortBy = 'popularity.desc';  // Значение по умолчанию для сортировки (по популярности)
+let currentMovies = [];
+
+// Обработка изменения сортировки
+document.querySelectorAll('.sort-options input').forEach(input => {
+    input.addEventListener('change', function() {
+        const selectedOption = this.value;
+        switch (selectedOption) {
+            case 'popularity':
+                sortBy = 'popularity.desc';  // Сортировка по популярности
+                break;
+            case 'rating':
+                sortBy = 'vote_average.desc';  // Сортировка по рейтингу
+                break;
+            case 'release_date':
+                sortBy = 'primary_release_date.desc';  // Сортировка по дате выпуска
+                break;
+            default:
+                sortBy = 'popularity.desc';  // Сортировка по умолчанию
+                break;
+        }
+
+        console.log(sortBy)
+
+        // Перезагружаем фильмы с учетом выбранной сортировки
+        getMoviesSorted();
+        
+        // Закрыть панель сортировки после выбора
+        document.querySelector('.sort-container').classList.remove('open');
+    });
+});
+
+async function getMoviesSorted() {
+    // Вместо запроса на сервер, сортируем уже загруженные фильмы
+    let sortedMovies = [...currentMovies];  // Копируем массив текущих фильмов
+    switch (sortBy) {
+        case 'popularity.desc':
+            sortedMovies.sort((a, b) => b.popularity - a.popularity);
+            break;
+        case 'vote_average.desc':
+            sortedMovies.sort((a, b) => b.vote_average - a.vote_average);
+            break;
+        case 'primary_release_date.desc':
+            sortedMovies.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+            break;
+        default:
+            sortedMovies.sort((a, b) => b.popularity - a.popularity);
+            break;
+    }
+    console.log(sortedMovies)
+    displayMovies(sortedMovies);  // Отображаем отсортированные фильмы
+}
+
+
 function addMovieToFav(movie) {
     const fav_movies = document.createElement('div');
     fav_movies.innerHTML = `
@@ -141,9 +205,9 @@ function addMovieToFav(movie) {
     x.addEventListener('click', () => {
         removeMovieLS(movie.id);
 
-        const heart_buttons = document.querySelectorAll('.fa-heart');
+        const heart_buttons = document.querySelectorAll('.fa-bookmark');
         heart_buttons.forEach(heart_btn => {
-            heart_btn.setAttribute('class', 'fa-regular fa-heart');
+            heart_btn.setAttribute('class', 'fa-regular fa-bookmark');
         });
         fetchFavMovies();
     });
@@ -180,7 +244,7 @@ function showMoviePopUp(movie) {
                 </div>
                 <div class="movie-name">
                     <p>${movie.title}</p>
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-bookmark"></i>
                 </div>
             </div>
         </div>
@@ -249,6 +313,7 @@ lightDarkModeSpan.addEventListener('click', () => { // переключение 
 
 // Поиск по названию фильма
 searchInput.addEventListener('input', (e) => {
+    e.preventDefault()
     const query = e.target.value.trim();
     if (query) {
         searchMovies(query);

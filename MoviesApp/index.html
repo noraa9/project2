@@ -15,6 +15,21 @@
                  <span class="light-dark-mode">
                     <i class="fa-solid fa-moon"></i>
                  </span>
+                <!-- Кнопка для открытия панели сортировки -->
+                <div class="sort-container">
+                    <button class="sort-btn">Sort Movies</button>
+                    <div class="sort-options">
+                        <label>
+                            <input type="radio" name="sort" value="popularity" checked> Popularity
+                        </label>
+                        <label>
+                            <input type="radio" name="sort" value="release_date"> Release Date
+                        </label>
+                        <label>
+                            <input type="radio" name="sort" value="rating"> Rating
+                        </label>
+                    </div>
+                </div>
                  <span class="search-container">
                     <input class="search-input" type="text" placeholder="Search Movie...">
                     <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
@@ -138,18 +153,6 @@
                             <li><strong>Cast:</strong> Jane Smith, Robert Brown, etc.</li> <!-- Cast will be dynamically inserted -->
                             <li><strong>Writer:</strong> Alice Green</li> <!-- Writer name will be dynamically inserted -->
                         </ul>
-                    </div>
-                
-                    <!-- User reviews (optional) -->
-                    <div>
-                        <h2>User Reviews</h2>
-                        <div class="review">
-                            <p><strong>John Doe:</strong> Amazing movie! A must-watch for everyone.</p>
-                        </div>
-                        <div class="review">
-                            <p><strong>Jane Smith:</strong> Not my type, but the action scenes were great.</p>
-                        </div>
-                        <!-- Additional reviews can be added here -->
                     </div>
                 
                     <!-- Movie trailers/clips (optional) -->
