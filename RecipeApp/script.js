@@ -104,9 +104,10 @@ function addMeal(recipes) {
         fetchFavMeals()
     })
 
-    meal_card.firstChild.nextSibling.addEventListener('click', () => {
-        showMealPopUp(recipes)
-    })
+    meal_card.firstChild.nextSibling.addEventListener('click', async () => {
+        const fullMealData = await getMealById(recipes.id); // Получаем полный рецепт
+        showMealPopUp(fullMealData); // Передаем полные данные в попап
+    });
 
     mealEl_container.appendChild(meal_card)//жазған блогымды контейнерге саламын, солайша ол главный экранда шығады
 }
@@ -186,7 +187,7 @@ search_icon.addEventListener('click', async () => {
     }
     else {
         // Проверяем, были ли найдены блюда
-        if (meals && meals.length > 0) {
+        if (meals || meals.length > 0) {
             meals.forEach(meal => {
                 addMeal(meal); // Добавляем каждое найденное блюдо
             });
@@ -204,7 +205,7 @@ search_input.addEventListener('keydown', async (event) => {
         const searchVal = search_input.value.trim(); // Получаем значение из поля поиска и убираем пробелы
         console.log(searchVal)
         const meals = await getMealsBySearch(searchVal); // Получаем результаты поиска
-
+        console.log(meals)
     // Проверяем, были ли найдены блюда
     if (meals && meals.length > 0) {
         meals.forEach(meal => {
@@ -224,7 +225,7 @@ close_popup_button.addEventListener('click', () => {
 })
 
 function showMealPopUp(recipes) {
-    if (recipes || recipes.extendedIngredients) {
+    if (recipes && Array.isArray(recipes.extendedIngredients)) {
         console.log(recipes);
     }
 
@@ -285,23 +286,4 @@ lightDarkModeSpan.addEventListener('click', () => { // light mode <=> dark mode
 
     document.documentElement.classList.toggle('light-theme')
 })
-function searchRecipes(query) {
-    const apiKey = '494b0a3397f240509a60c930a33d63a6'; // API key
-    fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${apiKey}`)
-        .then(response => response.json())
-        .then(data => {
-            // Clear the container before adding new results
-            mealEl_container.innerHTML = ''; 
-            const meals = data.results; // Array of meals
-            meals.forEach(meal => addMeal(meal)); // Call addMeal for each meal
-        })
-        .catch(error => console.error('Error fetching search results:', error));
-}
 
-// Event listener for input changes
-search_input.addEventListener('input', (e) => {
-    const query = e.target.value.trim();  // Get trimmed input query
-    if (query) {
-        searchRecipes(query);
-     }
-});
